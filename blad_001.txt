@@ -1,0 +1,43 @@
+Moje zapytanie SQL:
+START TRANSACTION;
+INSERT INTO spotkanie (spot__termin, spot__przypomnienie_dni, spot__przypomnienie_godz, spot__przypomnienie_min, spot__odbylo_sie, klient_klient__ID) VALUES ("2018-02-02 02:02", "0", "0", "0", 0, "2");
+INSERT INTO spotkanie_miejsce (spotkania_miejsca_spotkanie_miejsce__ID, spotkanie_spotkanie__ID) VALUES ("1", last_insert_id() );
+COMMIT;
+
+/*--------------------------------------------------------------------------------------------------------------------------------------
+Wynik działania programu:
+
+Traceback (most recent call last):
+  File "C:\Users\klaud\Documents\Priv\Kurs_BackEnd_Reaktor\Python\Python_projekt\projekt_001.py", line 362, in <module>
+    a=Agencja();
+  File "C:\Users\klaud\Documents\Priv\Kurs_BackEnd_Reaktor\Python\Python_projekt\projekt_001.py", line 17, in __init__
+    self.menu();
+  File "C:\Users\klaud\Documents\Priv\Kurs_BackEnd_Reaktor\Python\Python_projekt\projekt_001.py", line 32, in menu
+    self.obsluga_uzytkownika();
+  File "C:\Users\klaud\Documents\Priv\Kurs_BackEnd_Reaktor\Python\Python_projekt\projekt_001.py", line 74, in obsluga_uzytkownika
+    self.dzwonDoKlientow("u");
+  File "C:\Users\klaud\Documents\Priv\Kurs_BackEnd_Reaktor\Python\Python_projekt\projekt_001.py", line 333, in dzwonDoKlientow
+    self.wyswietl_lista_dzwonienia_po_1_rekord();
+  File "C:\Users\klaud\Documents\Priv\Kurs_BackEnd_Reaktor\Python\Python_projekt\projekt_001.py", line 148, in wyswietl_lista_dzwonienia_po_1_rekord
+    self.umow_spotkanie(klient__ID);
+  File "C:\Users\klaud\Documents\Priv\Kurs_BackEnd_Reaktor\Python\Python_projekt\projekt_001.py", line 171, in umow_spotkanie
+    self.ustaw_spotkanie(klient__ID, decyzja3);
+  File "C:\Users\klaud\Documents\Priv\Kurs_BackEnd_Reaktor\Python\Python_projekt\projekt_001.py", line 250, in ustaw_spotkanie
+    result = self.c3.execute(zapytanie_do_bazy);
+  File "C:\Program Files\Python36\lib\site-packages\pymysql\cursors.py", line 165, in execute
+    result = self._query(query)
+  File "C:\Program Files\Python36\lib\site-packages\pymysql\cursors.py", line 321, in _query
+    conn.query(q)
+  File "C:\Program Files\Python36\lib\site-packages\pymysql\connections.py", line 860, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "C:\Program Files\Python36\lib\site-packages\pymysql\connections.py", line 1061, in _read_query_result
+    result.read()
+  File "C:\Program Files\Python36\lib\site-packages\pymysql\connections.py", line 1349, in read
+    first_packet = self.connection._read_packet()
+  File "C:\Program Files\Python36\lib\site-packages\pymysql\connections.py", line 1018, in _read_packet
+    packet.check_error()
+  File "C:\Program Files\Python36\lib\site-packages\pymysql\connections.py", line 384, in check_error
+    err.raise_mysql_exception(self._data)
+  File "C:\Program Files\Python36\lib\site-packages\pymysql\err.py", line 107, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.ProgrammingError: (1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'INSERT INTO spotkanie (spot__termin, spot__przypomnienie_dni, spot__przypomnieni' at line 2")
