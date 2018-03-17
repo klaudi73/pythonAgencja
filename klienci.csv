@@ -1,6 +1,9 @@
-"klient__imie";"klient__nazwisko";"klient__pesel";"klient__numertelefonu"
-"Imie_Test_006";"Nazwisko_Test_006";"06060662345";"+48226234567"
-"Imie_Test_007";"Nazwisko_Test_007";"07070773456";"+48227345678"
-"Imie_Test_008";"Nazwisko_Test_008";"08080884567";"+48228456789"
-"Imie_Test_009";"Nazwisko_Test_009";"09090995678";"+48229567890"
-"Imie_Test_010";"Nazwisko_Test_010";"10101010789";"+48221078901"
+"wniosek_produkty__ID";"wniosek_wniosek__ID";"wniosek_produkt__ID"
+37;21;2
+38;21;6
+39;21;7
+40;21;8
+41;22;3
+42;22;11
+43;22;12
+44;22;14

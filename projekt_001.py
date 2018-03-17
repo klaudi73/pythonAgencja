@@ -38,7 +38,7 @@ class Agencja:
         os.sys.exit(0);
         
     def connstring(self):
-        self.conn = pymysql.connect("localhost", "agent", "agent", "agencja");
+        self.conn = pymysql.connect("localhost", "agent", "agent", "agencja", charset="utf8", use_unicode=True);
         self.c = self.conn.cursor();
     
     def login(self):
@@ -153,7 +153,7 @@ class Agencja:
         spotkania_miejsca__miasto = input("Podaj miasto: ");
         spotkania_miejsca__panstwo = input("Podaj państwo: ");
         spotkania_miejsca__opis = input("Podaj opis: ");
-        self.conn2 = pymysql.connect("localhost", "agent", "agent", "agencja");
+        self.conn2 = pymysql.connect("localhost", "agent", "agent", "agencja", charset="utf8", use_unicode=True);
         self.c2 = self.conn2.cursor();
         zapytanie_do_bazy = "INSERT INTO " + \
                             "spotkania_miejsca " + \
@@ -197,7 +197,7 @@ class Agencja:
             else:
                 continue;
         
-        self.conn3 = pymysql.connect("localhost", "agent", "agent", "agencja");
+        self.conn3 = pymysql.connect("localhost", "agent", "agent", "agencja", charset="utf8", use_unicode=True);
         self.c3 = self.conn3.cursor();
         zapytanie_do_bazy1 = "INSERT INTO " + \
                             "spotkanie " + \
@@ -223,7 +223,7 @@ class Agencja:
         self.conn3.close();
     
     def wyswietl_miejsca_spotkan(self):
-        self.conn3 = pymysql.connect("localhost", "agent", "agent", "agencja");
+        self.conn3 = pymysql.connect("localhost", "agent", "agent", "agencja", charset="utf8", use_unicode=True);
         self.c3 = self.conn3.cursor();
         result = self.c3.execute("SELECT * FROM spotkania_miejsca;");
         print("");
@@ -254,7 +254,7 @@ class Agencja:
         
     
     def update_dzwonienie(self, dzwonienie__ID):
-        self.conn2 = pymysql.connect("localhost", "agent", "agent", "agencja");
+        self.conn2 = pymysql.connect("localhost", "agent", "agent", "agencja", charset="utf8", use_unicode=True);
         self.c2 = self.conn2.cursor();
         result = self.c2.execute("UPDATE dzwonienie SET dzw__zadzwonione = 1 WHERE dzwonienie__ID = " + str(dzwonienie__ID) + ";");
         self.conn2.commit();
@@ -292,7 +292,7 @@ class Agencja:
         plik = open(sciezka, "r");
         rekord = [];
         try:
-            connWprowadzDaneK = pymysql.connect("localhost", "agent", "agent", "agencja");
+            connWprowadzDaneK = pymysql.connect("localhost", "agent", "agent", "agencja", charset="utf8", use_unicode=True);
             cursorWprowadzDaneK = connWprowadzDaneK.cursor();
             connWprowadzDaneK.begin();
             for linia in plik:
@@ -354,7 +354,7 @@ class Agencja:
         else:
             efekt__opis = input("Opis: ");
             try:
-                self.connDodajEfektSpotkania = pymysql.connect("localhost", "agent", "agent", "agencja");
+                self.connDodajEfektSpotkania = pymysql.connect("localhost", "agent", "agent", "agencja", charset="utf8", use_unicode=True);
                 self.cursorDodajEfektSpotkania = self.connDodajEfektSpotkania.cursor();
                 self.connDodajEfektSpotkania.begin();
                 zapytanie1 = "INSERT INTO efekt_spotkania (efekt__opis, spotkanie_spotkanie__ID) VALUES (\"" + efekt__opis + "\", \"" + spotkanie__ID + "\");";
@@ -371,7 +371,7 @@ class Agencja:
                 self.connDodajEfektSpotkania.close();
 
     def listaSpotkanZKlientami(self, typ_uzytkownika, typ_zapytania = "lista"):
-        self.connListaSpotkan = pymysql.connect("localhost", "agent", "agent", "agencja");
+        self.connListaSpotkan = pymysql.connect("localhost", "agent", "agent", "agencja", charset="utf8", use_unicode=True);
         self.cursorListaSpotkan = self.connListaSpotkan.cursor();
         self.connListaSpotkan.begin();
         if typ_zapytania == "lista":
@@ -444,7 +444,7 @@ class Agencja:
                 pass;
             
             try:
-                connWprowadzWniosek = pymysql.connect("localhost", "agent", "agent", "agencja");
+                connWprowadzWniosek = pymysql.connect("localhost", "agent", "agent", "agencja", charset="utf8", use_unicode=True);
                 cursorWprowadzWniosek = connWprowadzWniosek.cursor();
                 connWprowadzWniosek.begin();
                 zapytanie0 = "SELECT klient__ID FROM mozliwe_wnioski WHERE spotkanie__ID = " + spotkanie__ID + ";";
@@ -475,7 +475,7 @@ class Agencja:
 
     def wyswietlListeProduktow(self, typ_produktow, produkt__ID = 0, wyswietl_naglowek = 1, produkty_zaleznosc__parent__ID = 0):
         try:
-            connWyswietlProdukty = pymysql.connect("localhost", "agent", "agent", "agencja");
+            connWyswietlProdukty = pymysql.connect("localhost", "agent", "agent", "agencja", charset="utf8", use_unicode=True);
             cursorWyswietlProdukty = connWyswietlProdukty.cursor();
             connWyswietlProdukty.begin();
             if typ_produktow == "produkty":
@@ -511,7 +511,7 @@ class Agencja:
             connWyswietlProdukty.close();
         
     def wyswietlWnioski(self):
-        connWyswietlWnioski = pymysql.connect("localhost", "agent", "agent", "agencja");
+        connWyswietlWnioski = pymysql.connect("localhost", "agent", "agent", "agencja", charset="utf8", use_unicode=True);
         cursorWyswietlWnioski = connWyswietlWnioski.cursor();
         connWyswietlWnioski.begin();
         zapytanie1 = "SELECT * FROM lista_wnioskow_bez_umow;";
@@ -552,7 +552,7 @@ class Agencja:
             print("Podaj datę rozpoczęcia umowy.");
             data = input("YYYY-MM-RR: ");
             try:
-                connWprowadzUmowe = pymysql.connect("localhost", "agent", "agent", "agencja");
+                connWprowadzUmowe = pymysql.connect("localhost", "agent", "agent", "agencja", charset="utf8", use_unicode=True);
                 cursorWprowadzUmowe = connWprowadzUmowe.cursor();
                 connWprowadzUmowe.begin();
                 zapytanie1 = "INSERT INTO umowa (umowa__data_rozpoczecia, wniosek_wniosek__ID) " + \
@@ -567,7 +567,7 @@ class Agencja:
                 connWprowadzUmowe.close();
         
     def wyswietlWniosek(self, wniosek__ID):
-        connWyswietlWniosek = pymysql.connect("localhost", "agent", "agent", "agencja");
+        connWyswietlWniosek = pymysql.connect("localhost", "agent", "agent", "agencja", charset="utf8", use_unicode=True);
         cursorWyswietlWniosek = connWyswietlWniosek.cursor();
         connWyswietlWniosek.begin();
         zapytanie1 = "SELECT * FROM wniosek WHERE wniosek__ID = " + wniosek__ID + ";";
@@ -610,7 +610,7 @@ class Agencja:
             return 0;
         
     def wyswietlKlienta(self, klient__ID):
-        connWyswietlKlienta = pymysql.connect("localhost", "agent", "agent", "agencja");
+        connWyswietlKlienta = pymysql.connect("localhost", "agent", "agent", "agencja", charset="utf8", use_unicode=True);
         cursorWyswietlKlienta = connWyswietlKlienta.cursor();
         connWyswietlKlienta.begin();
         zapytanie1 = "SELECT * FROM klient WHERE klient__ID = " + str(klient__ID) + ";";
@@ -627,7 +627,7 @@ class Agencja:
         
     
     def listaWnioskowUmow(self, typ_uzytkownika):
-        connWyswietlWnUm = pymysql.connect("localhost", "agent", "agent", "agencja");
+        connWyswietlWnUm = pymysql.connect("localhost", "agent", "agent", "agencja", charset="utf8", use_unicode=True);
         cursorWyswietlWnUm = connWyswietlWnUm.cursor();
         connWyswietlWnUm.begin();
         zapytanie1 = "SELECT * FROM wniosek;";
